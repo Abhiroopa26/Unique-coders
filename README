@@ -1,0 +1,33 @@
+# Candidate Elimination Algorithm
+
+This project implements the Candidate Elimination algorithm to learn hypotheses from training examples. The algorithm iteratively refines the hypothesis space based on positive and negative examples.
+
+## Files
+
+- `candidate_elimination.py`: Python script containing the implementation of the Candidate Elimination algorithm.
+- `enjoysport.csv`: Dataset containing training examples for the algorithm.
+
+## Usage
+
+1. Ensure you have Python installed on your system.
+2. Run the script `candidate_elimination.py` to execute the Candidate Elimination algorithm on the 'enjoysport.csv' dataset.
+
+## Implementation Details
+
+- `candidate_elimination.py`: Python script containing the implementation of the Candidate Elimination algorithm.
+- `enjoysport.csv`: CSV file containing training examples with attributes and class labels.
+
+## Dataset
+
+The 'enjoysport.csv' dataset contains the following columns:
+
+1. Outlook: Weather outlook (Sunny, Overcast, Rainy)
+2. Temperature: Temperature (Hot, Mild, Cool)
+3. Humidity: Humidity level (High, Normal)
+4. Windy: Wind condition (True, False)
+5. Class: Whether sport is enjoyed (Yes, No)
+
+## Results
+
+The script executes the Candidate Elimination algorithm on the provided dataset and prints the hypotheses at each step of iteration based on positive and negative examples.
+
