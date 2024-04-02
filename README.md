@@ -1,36 +1,32 @@
-# Decision Tree Classifier for Tennis Dataset
+# Candidate Elimination Algorithm
 
-This project implements a decision tree classifier using the ID3 algorithm for the Tennis dataset. The decision tree is built to predict whether to play tennis based on weather conditions.
+This project implements the Candidate Elimination algorithm to learn hypotheses from training examples. The algorithm iteratively refines the hypothesis space based on positive and negative examples.
 
 ## Files
 
-- `decision_tree_tennis.py`: Python script containing the implementation of the decision tree classifier.
-- `tennis.csv`: Dataset containing weather conditions and whether tennis was played.
+- `candidate_elimination.py`: Python script containing the implementation of the Candidate Elimination algorithm.
+- `enjoysport.csv`: Dataset containing training examples for the algorithm.
 
 ## Usage
 
 1. Ensure you have Python installed on your system.
-2. Install the required libraries using `pip install -r requirements.txt`.
-3. Run the script `decision_tree_tennis.py` to build the decision tree classifier and evaluate its accuracy.
+2. Run the script `candidate_elimination.py` to execute the Candidate Elimination algorithm on the 'enjoysport.csv' dataset.
 
 ## Implementation Details
 
-- `entropy_list(a_list)`: Function to calculate the entropy of a list.
-- `entropy(probs)`: Function to calculate entropy from probabilities.
-- `info_gain(df, split, target)`: Function to calculate information gain for a split.
-- `id3(df, target, attribute_name)`: Function to build the decision tree using the ID3 algorithm.
-- `classify(instance, tree, default)`: Function to classify a new instance using the decision tree.
+- `candidate_elimination.py`: Python script containing the implementation of the Candidate Elimination algorithm.
+- `enjoysport.csv`: CSV file containing training examples with attributes and class labels.
 
 ## Dataset
 
-The Tennis dataset contains the following columns:
+The 'enjoysport.csv' dataset contains the following columns:
 
 1. Outlook: Weather outlook (Sunny, Overcast, Rainy)
-2. Temperature: Temperature in Celsius (Hot, Mild, Cool)
+2. Temperature: Temperature (Hot, Mild, Cool)
 3. Humidity: Humidity level (High, Normal)
-4. Wind: Wind condition (Weak, Strong)
-5. PlayTennis: Whether tennis was played (Yes, No)
+4. Windy: Wind condition (True, False)
+5. Class: Whether sport is enjoyed (Yes, No)
 
 ## Results
 
-The script builds a decision tree and evaluates its accuracy using a training-testing split.
+The script executes the Candidate Elimination algorithm on the provided dataset and prints the hypotheses at each step of iteration based on positive and negative examples.
