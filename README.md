@@ -1,33 +1,79 @@
-# Candidate Elimination Algorithm
+import numpy as np
+import math
+import csv
+def read_data(filename):
+    with open(filename, 'r') as csvfile:
+        datareader = csv.reader(csvfile)
+        metadata = next(datareader)
+        traindata=[]
+        for row in datareader:
+            traindata.append(row)
+    return (metadata, traindata)
+def splitDataset(dataset, splitRatio):
+    trainSize = int(len(dataset) * splitRatio)
+    trainSet = []
+    testset = list(dataset)
+    i=0
+    while len(trainSet) < trainSize:
+        trainSet.append(testset.pop(i))
+    return [trainSet, testset]
+def classify(data,test):
+    total_size = data.shape[0]
+    print("training data size=",total_size)
+    print("test data size=",test.shape[0])
+    target=np.unique(data[:,-1])
+    count = np.zeros((target.shape[0]), dtype=np.int32)
+    prob = np.zeros((target.shape[0]), dtype=np.float32)
 
-This project implements the Candidate Elimination algorithm to learn hypotheses from training examples. The algorithm iteratively refines the hypothesis space based on positive and negative examples.
+    print("target count probability")
 
-## Files
+    for y in range(target.shape[0]):
+        for x in range(data.shape[0]):
+            if data[x,data.shape[1]-1] == target[y]:
+                count[y] += 1
+        prob[y]=count[y]/total_size # comptes the probability of target
+        print(target[y],"\t",count[y],"\t",prob[y])
 
-- `candidate_elimination.py`: Python script containing the implementation of the Candidate Elimination algorithm.
-- `tennis.csv`: Dataset containing training examples for the algorithm.
+    prob0 = np.zeros((test.shape[1]-1), dtype=np.float32)
+    prob1 = np.zeros((test.shape[1]-1), dtype=np.float32)
+    accuracy=0
+    print("Instance prediction target")
+    for t in range(test.shape[0]):
+        for k in range(test.shape[1]-1):
+            count1=count0=0
+            for j in range(data.shape[0]):
+                if test[t,k]== data[j,k] and data[j,data.shape[1]-1]== target[0]:
+                    count0+=1
+                elif test[t,k]== data[j,k] and data[j,data.shape[1]-1]== target[1]:
+                    count1+=1
+            prob0[k]= count0/count[0]
+            prob1[k]= count1/count[1]
 
-## Usage
+        probno=prob[0]
+        probyes=prob[1]
+        for i in range(test.shape[1]-1):
+            probno=probno*prob0[i]
+            probyes=probyes*prob1[i]
 
-1. Ensure you have Python installed on your system.
-2. Run the script `candidate_elimination.py` to execute the Candidate Elimination algorithm on the 'tennis.csv' dataset.
+        if probno>probyes:
+            predict='no'
+        else:
+            predict='yes'
+        print(t+1,"\t",predict,"\t ",test[t,test.shape[1]-1])
 
-## Implementation Details
+        if predict== test[t,test.shape[1]-1]:
+            accuracy+=1
+        final_accuracy=(accuracy/test.shape[0])*100
+        print("accuracy",final_accuracy,"%")
+    return
+metadata, traindata = read_data("tennis2.csv")
+splitRatio = 0.6
+trainingset, testset = splitDataset(traindata, splitRatio)
+training=np.array(trainingset)
+testing=np.array(testset)
+print("------------------Training Data ------------------ ")
+print(trainingset)
+print("-------------------Test Data ------------------ ")
+print(testset)
 
-- `candidate_elimination.py`: Python script containing the implementation of the Candidate Elimination algorithm.
-- `tennis.csv`: CSV file containing training examples with attributes and class labels.
-
-## Dataset
-
-The 'tennis.csv' dataset contains the following columns:
-
-1. Outlook: Weather outlook (Sunny, Overcast, Rainy)
-2. Temperature: Temperature (Hot, Mild, Cool)
-3. Humidity: Humidity level (High, Normal)
-4. Wind: Wind condition (Weak, Strong)
-5. PlayTennis: Whether tennis was played (Yes, No)
-
-## Results
-
-The script executes the Candidate Elimination algorithm on the provided dataset and prints the hypotheses at each step of iteration based on positive and negative examples.
-
+classify(training,testing)
