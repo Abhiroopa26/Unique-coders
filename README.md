@@ -1,41 +1,35 @@
-# Neural Network Classifier for Tennis Data using Backpropagation
+# Neural Network Regression README
 
-This Python script implements a neural network classifier using backpropagation to predict whether tennis matches will be played based on weather conditions.
+This repository contains a Python script implementing a simple neural network for regression using NumPy. The neural network is trained to predict an output value based on input features. 
 
-## Files
+## Overview
 
-- `neural_network_classifier.py`: Python script containing the implementation of the neural network classifier using backpropagation.
-- `tennis2.csv`: Dataset containing training examples for the classifier.
+The script `neural_network_regression.py` contains the implementation of the neural network. Here's a breakdown of the key components:
+
+- **Normalization**: The input data `X` and output data `y` are normalized to a range between 0 and 1 using the maximum value of each feature.
+- **Activation Function**: The sigmoid activation function is used both in the hidden layer and the output layer. 
+- **Variable Initialization**: We randomly initialize the weights (`wh`, `wout`) and biases (`bh`, `bout`) of the neural network.
+- **Training Loop**: The training loop runs for a specified number of epochs. In each epoch, it performs forward propagation to compute the output, calculates the error, and then performs backpropagation to update the weights.
+- **Error Calculation**: The error is calculated as the difference between the predicted output and the actual output.
+
+## Requirements
+
+- Python 3.x
+- NumPy
 
 ## Usage
 
-1. **Prerequisites**: Ensure you have Python installed on your system.
-2. **Running the Script**:
-    - Place the `neural_network_classifier.py` script and the `tennis2.csv` dataset in the same directory.
-    - Open a terminal or command prompt.
-    - Navigate to the directory containing the script and dataset.
-    - Run the script using the command: `python neural_network_classifier.py`
+To run the script, execute the following command:
 
-## Implementation Details
+python neural_network_regression.py
+## Customization
 
-- **Libraries Used**: The classifier is implemented using Python and may utilize libraries like numpy for numerical operations.
-- **Algorithm**: Backpropagation is used to train a neural network classifier to predict whether tennis will be played based on weather conditions.
-- **Neural Network Architecture**: The architecture of the neural network, including the number of layers, neurons per layer, activation functions, etc., can be customized within the script.
+- **Epochs**: You can modify the `epoch` variable to change the number of training epochs.
+- **Learning Rate**: The learning rate `eta` determines the step size during weight updates. Adjust it according to your preference.
+- **Network Architecture**: You can customize the number of neurons in the hidden layer (`hidden_neurons`) and the number of input and output neurons (`input_neurons`, `output_neurons`).
 
-## Dataset
+## Acknowledgments
 
-- **File**: `tennis2.csv`
-- **Attributes**:
-    1. Outlook: Weather outlook (Sunny, Overcast, Rainy)
-    2. Temperature: Temperature (Hot, Mild, Cool)
-    3. Humidity: Humidity level (High, Normal)
-    4. Windy: Wind condition (True, False)
-- **Target Variable**:
-    - PlayTennis: Whether tennis was played (Yes, No)
+This implementation is inspired by various resources and tutorials on neural networks and machine learning. 
+   
 
-## Results
-
-- The script splits the dataset into training and testing sets using a specified ratio.
-- It trains the neural network classifier using backpropagation on the training set.
-- The trained classifier is then evaluated on the testing set to determine its accuracy.
-- The script may also print additional performance metrics or visualization of the results, depending on the implementation.
