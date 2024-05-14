@@ -1,35 +1,33 @@
-# Neural Network Regression README
-
-This repository contains a Python script implementing a simple neural network for regression using NumPy. The neural network is trained to predict an output value based on input features. 
+# Naive Bayes Classifier for Tennis Data
 
 ## Overview
+This Python script implements a Naive Bayes classifier to predict whether to play tennis based on weather conditions. It reads a dataset from a CSV file containing metadata and training data, splits it into training and test sets, and then classifies the test set instances.
 
-The script `neural_network_regression.py` contains the implementation of the neural network. Here's a breakdown of the key components:
-
-- **Normalization**: The input data `X` and output data `y` are normalized to a range between 0 and 1 using the maximum value of each feature.
-- **Activation Function**: The sigmoid activation function is used both in the hidden layer and the output layer. 
-- **Variable Initialization**: We randomly initialize the weights (`wh`, `wout`) and biases (`bh`, `bout`) of the neural network.
-- **Training Loop**: The training loop runs for a specified number of epochs. In each epoch, it performs forward propagation to compute the output, calculates the error, and then performs backpropagation to update the weights.
-- **Error Calculation**: The error is calculated as the difference between the predicted output and the actual output.
-
-## Requirements
-
+## Prerequisites
 - Python 3.x
-- NumPy
+- NumPy library
+- CSV module
+
+## Files
+- **tennis2.csv**: CSV file containing metadata and training data for the Naive Bayes classifier.
+- **naive_bayes_tennis.py**: Python script implementing the Naive Bayes classifier.
 
 ## Usage
+1. Ensure you have Python 3.x installed on your system.
+2. Install NumPy library if not already installed:
+3. Place the `tennis2.csv` file in the same directory as the Python script `naive_bayes_tennis.py`.
+4. Run the script using the following command:
 
-To run the script, execute the following command:
+## Functionality
+- **read_data(filename)**: Reads data from a CSV file.
+- **splitDataset(dataset, splitRatio)**: Splits the dataset into training and test sets based on the specified ratio.
+- **classify(data, test)**: Performs Naive Bayes classification on the test set.
 
-python neural_network_regression.py
-## Customization
-
-- **Epochs**: You can modify the `epoch` variable to change the number of training epochs.
-- **Learning Rate**: The learning rate `eta` determines the step size during weight updates. Adjust it according to your preference.
-- **Network Architecture**: You can customize the number of neurons in the hidden layer (`hidden_neurons`) and the number of input and output neurons (`input_neurons`, `output_neurons`).
-
-## Acknowledgments
-
-This implementation is inspired by various resources and tutorials on neural networks and machine learning. 
-   
-
+## Example
+```python
+metadata, traindata = read_data("tennis2.csv")
+splitRatio = 0.6
+trainingset, testset = splitDataset(traindata, splitRatio)
+training = np.array(trainingset)
+testing = np.array(testset)
+classify(training, testing)
