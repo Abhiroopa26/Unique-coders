@@ -22,13 +22,21 @@ The dataset data7_heart.csv should be in the same directory as your script. This
 
 ## Example Output:
 The output will display the probability distribution for the heartdisease variable given the evidence:
+
 +----------------+------------------+
+
 | heartdisease   |   phi(heartdisease) |
+
 +================+==================+
+
 | heartdisease(0) | 0.3              |
+
 +----------------+------------------+
+
 | heartdisease(1) | 0.7              |
+
 +----------------+------------------+
+
 This indicates the probabilities of not having (0) and having (1) heart disease given the evidence provided.
 
 ## Notes:
